@@ -54,3 +54,12 @@ class ESLReportPanel:
             return
             
         self.logger.log('Occurrences Found')
+        
+        while not self.screen_interactor.is_image_on_screen('assets/menu/edi/no-pendencies.png'):
+            self.screen_interactor.wait_and_click('assets/menu/edi/generate.png')
+            self.screen_interactor.wait_and_click('assets/menu/edi/yes.png')
+            
+        self.screen_interactor.wait_and_click('assets/menu/edi/generated-files.png')
+        self.screen_interactor.click_and_type('assets/menu/edi/customer-selection.png', "43.643.857/0001-32")
+        self.screen_interactor.wait_and_click('assets/menu/edi/monte-vergine.png')
+        self.screen_interactor.wait_and_click('assets/menu/edi/search.png')
