@@ -26,10 +26,14 @@ class ESLReportPanel:
         self.screen_interactor.wait_and_click('assets/menu/edi/edi.png')
         
         if self.screen_interactor.is_image_on_screen('assets/menu/edi/select-proceda.png'):
+            self.logger.log('Pattern Found: PROCEDA 3.0')
             self.screen_interactor.click_and_type('assets/menu/edi/select-proceda.png', "TIVIT 5.0")
+            self.logger.log('Pattern Changed: TIVIT 5.0')
             
         elif self.screen_interactor.is_image_on_screen('assets/menu/edi/select-tivit.png'):
+            self.logger.log('Pattern Found: TIVIT 5.0')
             self.screen_interactor.click_and_type('assets/menu/edi/select-tivit.png', "PROCEDA 3.0")
+            self.logger.log('Pattern Changed: PROCEDA 3.0')
         
         pyautogui.press('ENTER')
         time.sleep(0.8)
@@ -43,6 +47,10 @@ class ESLReportPanel:
         self.screen_interactor.wait_and_click('assets/menu/edi/monte-vergine.png')
         self.screen_interactor.wait_and_click('assets/menu/edi/search.png')
         
+        self.logger.log('Searching for Monte Vergine Occurrences')
+        
         if self.screen_interactor.is_image_on_screen('assets/menu/edi/no-pendencies.png', 2):
-            # self.chrome_manager.close()
-            print('Sem pendências')
+            self.logger.log('No Occurrences Found')
+            return
+            
+        self.logger.log('Occurrences Found')
